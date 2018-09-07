@@ -11,6 +11,9 @@ your	local	machines
 container	
 4. Document	your	work	in	a	readme	
 5. Bonus:	use	configmaps	in	kubernetes	for	the	environment	variables
+
 Deliverables:
+-------------
+
 A	github	repo	with	all	the	relevant	work,	compose	files,	kubernetes	files....	Etc
 Please	feel	free	to	ask	any	questions.
