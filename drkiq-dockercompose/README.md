@@ -1,12 +1,10 @@
 # iBug-DevOps-challenge
 
-K8 setup
+docker-compose setup
 -------------------
 
-1. start minishift from [here](https://docs.okd.io/latest/minishift/getting-started/quickstart.html)
-2. `oc new-project myproject`
-3. `oc process -f rubyontailsapp-template.yaml | oc create -f -`
-4. `cp Dockerfile.drkiq Dockerfile && oc start-build drkiq --from-dir=. --follow`
-5. `cp Dockerfile.sidekiq Dockerfile && oc start-build sidekiq --from-dir=. --follow`
-6. try to access the [route](http://drkiq-myproject.192.168.99.100.nip.io)
+1. Installing Docker & docker-compose from [here](https://docs.docker.com/linux/started/) and [here](https://github.com/docker/compose/releases)
+2. `docker volume create --name drkiq-postgres`
+3. `docker volume create --name drkiq-redis`
+4. `docker-compose up`
 
