@@ -28,13 +28,16 @@ RUN bundle install
 # Copy in the application code from your work station at the current directory
 # over to the working directory.
 COPY . .
-
+RUN chmod o+rwx $INSTALL_PATH -R
+RUN chown daemon:daemon $INSTALL_PATH -R
 # Provide dummy data to Rails so it can pre-compile assets.
-RUN bundle exec rake RAILS_ENV=production DATABASE_URL=postgresql://user:pass@127.0.0.1/dbname SECRET_TOKEN=pickasecuretoken assets:precompile
+RUN bundle exec rake RAILS_ENV=production DATABASE_URL=postgresql://user:pass@postgresql-96-rhel7/dbname SECRET_TOKEN=pickasecuretoken assets:precompile
 
 # Expose a volume so that nginx will be able to read in assets in production.
 VOLUME ["$INSTALL_PATH/public"]
-
+RUN chgrp -R 0 $INSTALL_PATH && chmod -R g=u $INSTALL_PATH
+EXPOSE 8000
+USER daemon
 # The default command that gets ran will be to start the Unicorn server.
-CMD bundle exec unicorn -c config/unicorn.rb
+ENTRYPOINT bundle exec unicorn -c config/unicorn.rb
 
