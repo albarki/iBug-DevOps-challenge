@@ -1,19 +1,12 @@
 # iBug-DevOps-challenge
 
-DevOps	Challenge
+K8 setup
 -------------------
 
-1. Follow	this	blog	post	to	dockerize	a	sample	app		
-https://semaphoreci.com/community/tutorials/dockerizing-a-ruby-on-rails-application
-2. Do	the	same,		but	with	using	kubernetes,		you	can	use	minikube	to	build	a	cluster	on	
-your	local	machines	
-3. Do	not	use	the	.env	file,	figure	out	another	way	to	pass	the	env	variables	to	the	
-container	
-4. Document	your	work	in	a	readme	
-5. Bonus:	use	configmaps	in	kubernetes	for	the	environment	variables
+1. start minishift from [here](https://docs.okd.io/latest/minishift/getting-started/quickstart.html)
+2. `oc new-project myproject`
+3. `oc process -f rubyontailsapp-template.yaml | oc create -f -`
+4. `cp Dockerfile.drkiq Dockerfile && oc start-build drkiq --from-dir=. --follow`
+5. `cp Dockerfile.sidekiq Dockerfile && oc start-build sidekiq --from-dir=. --follow`
+6. try to access the [route](drkiq-myproject.192.168.99.100.nip.io)
 
-Deliverables:
--------------
-
-A	github	repo	with	all	the	relevant	work,	compose	files,	kubernetes	files....	Etc
-Please	feel	free	to	ask	any	questions.
